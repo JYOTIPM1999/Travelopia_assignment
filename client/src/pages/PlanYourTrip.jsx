@@ -194,9 +194,9 @@ export default function PlanYourTrip() {
                   onChange={handleChange}
                   name="place"
                 >
-                  <option value="india">India</option>
-                  <option value="africa">Africa</option>
-                  <option value="europe">Europe</option>
+                  <option value="India">India</option>
+                  <option value="Africa">Africa</option>
+                  <option value="Europe">Europe</option>
                 </Select>
               </FormControl>
 
