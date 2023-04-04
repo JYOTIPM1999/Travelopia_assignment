@@ -6,7 +6,10 @@ const {
 
 const app = express.Router();
 
+//Route for registering new user.
 app.post("/register", registerTravellers);
+
+// Route for retrieving data from database.
 app.get("/getData", getData);
 
 module.exports = app;

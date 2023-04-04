@@ -1,14 +1,19 @@
 const TravellerModel = require("../models/travellers.Scheme");
 
+// registerTravellers is used for registering new users data,
+// Endpoint for registering new user "http://localhost:8080/traveller/register"
+// Have added proper error checking
+
 const registerTravellers = async (req, res) => {
   const { name, email, place, numberofTravellers, budgetPerPerson, total } =
     req.body;
-
-  console.log(name, email, place, numberofTravellers, budgetPerPerson, total);
   try {
+    // This is validation for existing user, if user already exist then they can't register again.
     const existUser = await TravellerModel.findOne({ email });
     if (existUser) {
-      res.send("User already existed");
+      res
+        .status(401)
+        .send("User already existed, please try with another email.");
     } else {
       const user = await TravellerModel.create({
         name,
@@ -26,10 +31,13 @@ const registerTravellers = async (req, res) => {
   }
 };
 
+// getData is used for retrieving all users data,
+// Endpoint for getting all users data "http://localhost:8080/traveller/getData"
+// Have added proper error checking
+
 const getData = async (req, res) => {
   try {
     let data = await TravellerModel.find();
-    console.log(data);
     res.status(200).send(data);
   } catch (error) {
     res.status(500).send(error.message);
