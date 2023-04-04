@@ -10,6 +10,7 @@ import {
   useDisclosure,
   useColorModeValue,
   Stack,
+  Text,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
@@ -19,7 +20,7 @@ const Navbar = () => {
 
   return (
     <>
-      <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+      <Box bgGradient="linear(to-r, yellow.200,green.400)" px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
             size={"md"}
@@ -32,11 +33,20 @@ const Navbar = () => {
             <HStack
               as={"nav"}
               spacing={8}
-              alignItems={"center"}
               display={{ base: "none", md: "flex" }}
+              fontWeight={"extrabold"}
+              fontSize={"2xl"}
             >
-              <Link to="/">Plan Your Trip</Link>
-              <Link to="/details">Details</Link>
+              <Link to="/">
+                <Text bgGradient="linear(to-l, blue.500,red.600)" bgClip="text">
+                  Plan Your Trip
+                </Text>
+              </Link>
+              <Link to="/details">
+                <Text bgGradient="linear(to-r, blue.500,red.600)" bgClip="text">
+                  Details
+                </Text>
+              </Link>
             </HStack>
           </HStack>
           <Flex alignItems={"center"}>

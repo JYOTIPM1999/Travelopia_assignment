@@ -70,7 +70,7 @@ export default function PlanYourTrip() {
           <Box as={"form"} mt={10}>
             <Stack spacing={4}>
               <Input
-                placeholder="Firstname"
+                placeholder="Fulll Name"
                 bg={"gray.100"}
                 border={0}
                 color={"gray.500"}
@@ -79,7 +79,7 @@ export default function PlanYourTrip() {
                 }}
               />
               <Input
-                placeholder="firstname@lastname.io"
+                placeholder="name@email.com"
                 bg={"gray.100"}
                 border={0}
                 color={"gray.500"}
