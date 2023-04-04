@@ -59,6 +59,7 @@ export default function PlanYourTrip() {
   const handleClick = async () => {
     const { name, email, place, numberofTravellers, budgetPerPerson, total } =
       trip;
+
     if (
       !name ||
       !email ||
@@ -76,27 +77,38 @@ export default function PlanYourTrip() {
         isClosable: true,
       });
     } else {
-      let data = await axios
-        .post("http://localhost:8080/traveller/register", trip)
-        .then((res) => {
-          if (res.data === "Data successfully saved") {
-            toast({
-              title: "Trip saved successfully.",
-              description: "You have created trip successfully.",
-              status: "success",
-              duration: 3000,
-              isClosable: true,
-            });
-          } else {
-            toast({
-              title: "Email already exist",
-              description: "You have created Trip previously",
-              status: "error",
-              duration: 3000,
-              isClosable: true,
-            });
-          }
+      if (email.includes("@gmail.com")) {
+        let data = await axios
+          .post("http://localhost:8080/traveller/register", trip)
+          .then((res) => {
+            if (res.data === "Data successfully saved") {
+              toast({
+                title: "Trip saved successfully.",
+                description: "You have created trip successfully.",
+                status: "success",
+                duration: 3000,
+                isClosable: true,
+              });
+            } else {
+              toast({
+                title: "Email already exist",
+                description: "You have created Trip previously",
+                status: "error",
+                duration: 3000,
+                isClosable: true,
+              });
+            }
+          });
+      } else {
+        toast({
+          title: "Email must contain @gmail.com",
+          description: "You have created Trip previously",
+          status: "warning",
+          position: "top",
+          duration: 3000,
+          isClosable: true,
         });
+      }
     }
   };
 
@@ -208,7 +220,7 @@ export default function PlanYourTrip() {
                 <Input
                   onChange={handleChange}
                   name="budgetPerPerson"
-                  placeholder="Ex-50"
+                  placeholder="Ex-50 $ per person"
                   bg={"gray.100"}
                   border={0}
                   color={"gray.500"}
@@ -217,26 +229,9 @@ export default function PlanYourTrip() {
                   }}
                 />
               </FormControl>
-
-              {/* <FormControl> */}
-              {/* <FormLabel>Total Budget in $</FormLabel> */}
-              {/* <Input
-                  name="total"
-                  onChange={handleChange}
-                  placeholder="Total Budget in $"
-                  bg={"gray.100"}
-                  border={0}
-                  color={"gray.500"}
-                  _placeholder={{
-                    color: "gray.500",
-                  }}
-                  value={trip.total}
-                  disabled="true"
-                /> */}
               <Text as={"b"} fontSize="25px" color="green">
                 Total Budget - {trip.total} $
               </Text>
-              {/* </FormControl> */}
             </Stack>
 
             <Button
