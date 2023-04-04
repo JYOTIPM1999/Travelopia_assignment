@@ -12,6 +12,14 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
+  FormControl,
+  FormLabel,
+  Select,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
 } from "@chakra-ui/react";
 
 export default function PlanYourTrip() {
@@ -87,7 +95,7 @@ export default function PlanYourTrip() {
                   color: "gray.500",
                 }}
               />
-              <Menu>
+              {/* <Menu>
                 <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
                   Select Location...
                 </MenuButton>
@@ -96,20 +104,50 @@ export default function PlanYourTrip() {
                   <MenuItem>Africa</MenuItem>
                   <MenuItem>Europe</MenuItem>
                 </MenuList>
-              </Menu>
+              </Menu> */}
+              <FormControl>
+                {/* <FormLabel>Select Location...</FormLabel> */}
+                <Select placeholder="Select country">
+                  <option>India</option>
+                  <option>Africa</option>
+                  <option>Europe</option>
+                </Select>
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Select No of Travelers</FormLabel>
+                <NumberInput max={500} min={1}>
+                  <NumberInputField />
+                  <NumberInputStepper>
+                    <NumberIncrementStepper />
+                    <NumberDecrementStepper />
+                  </NumberInputStepper>
+                </NumberInput>
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Select Budget per Person in $</FormLabel>
+                <NumberInput max={500} min={5}>
+                  <NumberInputField />
+                  <NumberInputStepper>
+                    <NumberIncrementStepper />
+                    <NumberDecrementStepper />
+                  </NumberInputStepper>
+                </NumberInput>
+              </FormControl>
+
               <Input
-                placeholder="Select No of Travelers"
+                placeholder="Total Budget in $"
                 bg={"gray.100"}
                 border={0}
                 color={"gray.500"}
                 _placeholder={{
                   color: "gray.500",
                 }}
+                disabled="true"
               />
-              {/* <Button fontFamily={"heading"} bg={"gray.200"} color={"gray.800"}>
-                Upload CV
-              </Button> */}
             </Stack>
+
             <Button
               fontFamily={"heading"}
               mt={8}
@@ -124,7 +162,6 @@ export default function PlanYourTrip() {
               Submit
             </Button>
           </Box>
-          form
         </Stack>
       </Container>
     </Box>
