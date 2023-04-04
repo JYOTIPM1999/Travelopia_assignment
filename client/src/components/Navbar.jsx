@@ -8,12 +8,14 @@ import {
   Menu,
   MenuButton,
   useDisclosure,
-  useColorModeValue,
   Stack,
-  Text,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
+
+//Given default Avatar for better UI.
+//Navbar is fully responsive.
+//Given routes for change from Registration page to details page and vice versa.
 
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -36,17 +38,11 @@ const Navbar = () => {
               display={{ base: "none", md: "flex" }}
               fontWeight={"extrabold"}
               fontSize={"2xl"}
+              bgGradient="linear(to-l, blue.500,red.600)"
+              bgClip="text"
             >
-              <Link to="/">
-                <Text bgGradient="linear(to-l, blue.500,red.600)" bgClip="text">
-                  Plan Your Trip
-                </Text>
-              </Link>
-              <Link to="/details">
-                <Text bgGradient="linear(to-r, blue.500,red.600)" bgClip="text">
-                  Details
-                </Text>
-              </Link>
+              <Link to="/">Plan Your Trip</Link>
+              <Link to="/details">Details</Link>
             </HStack>
           </HStack>
           <Flex alignItems={"center"}>
@@ -68,10 +64,17 @@ const Navbar = () => {
             </Menu>
           </Flex>
         </Flex>
-
+        //Responsible for responsiveness
         {isOpen ? (
           <Box pb={4} display={{ md: "none" }}>
-            <Stack as={"nav"} spacing={4}>
+            <Stack
+              as={"nav"}
+              spacing={4}
+              fontSize={"xl"}
+              fontWeight={"bold"}
+              bgGradient="linear(to-l, blue.500,red.600)"
+              bgClip="text"
+            >
               <Link to="/">Plan Your Trip</Link>
               <Link to="/details">Details</Link>
             </Stack>

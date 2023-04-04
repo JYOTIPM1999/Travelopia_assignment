@@ -1,9 +1,6 @@
-import { ChatIcon } from "@chakra-ui/icons";
 import {
-  Button,
   Card,
   CardBody,
-  CardFooter,
   CardHeader,
   Heading,
   SimpleGrid,
@@ -11,6 +8,11 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
+
+//Used useEffect Hook for fetching data whenever landing into this page.
+//Used useState to store array of data received from database.
+//API endpoint for retrieving data "http://localhost:8080/traveller/getData"
+//Page is responsive for all screen sizes.
 
 const DetailsPage = () => {
   let [data, setData] = useState([]);
@@ -23,15 +25,20 @@ const DetailsPage = () => {
     <SimpleGrid
       spacing={4}
       mt={"20px"}
-      templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(4, 1fr)"]}
+      templateColumns={[
+        "repeat(1, 1fr)",
+        "repeat(2, 1fr)",
+        "repeat(2, 1fr)",
+        "repeat(4, 1fr)",
+      ]}
       gap={6}
     >
       {data.map((el, i) => {
         return (
           <Card
-            _hover={{ bgGradient: "linear(to-r, blue.400,pink.400)" }}
+            _hover={{ bgGradient: "linear(to-r, green.400,blue.400 )" }}
             key={i}
-            bgGradient="linear(to-r, green.400,blue.400)"
+            bgGradient="linear(to-r, blue.400,pink.400)"
             boxShadow={"rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px"}
             textColor={"white"}
           >
@@ -47,14 +54,11 @@ const DetailsPage = () => {
                 Number of Travellers-: {el.numberofTravellers}
               </Text>
               <Text fontSize="lg">
-                Budget per Person-: {el.budgetPerPerson} $
+                Budget per Person-: $ {el.budgetPerPerson}
               </Text>
               <br />
-              <Heading size="md">Total budget-: {el.total} $</Heading>
+              <Heading size="md">Total budget-: $ {el.total}</Heading>
             </CardBody>
-            {/* <CardFooter>
-              <Button>View here</Button>
-            </CardFooter> */}
           </Card>
         );
       })}
