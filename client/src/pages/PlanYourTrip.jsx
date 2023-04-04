@@ -21,8 +21,33 @@ import {
   NumberIncrementStepper,
   NumberDecrementStepper,
 } from "@chakra-ui/react";
+import { useState } from "react";
+
+import axios from "axios";
 
 export default function PlanYourTrip() {
+  const [trip, setTrip] = useState({
+    name: "",
+    email: "",
+    place: "",
+    numberofTravellers: 0,
+    budgetPerPerson: 0,
+    total: 0,
+  });
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    // const [name, value] = e.target;
+    console.log(e.target.name);
+    // setTrip({ ...trip, [name]: value });
+  };
+
+  const handleClick = async () => {
+    console.log("Clicked");
+    let data = await axios.post("http://localhost:8080/traveller/register");
+    console.log(data);
+  };
+
   return (
     <Box position={"relative"}>
       <Container
@@ -78,6 +103,8 @@ export default function PlanYourTrip() {
           <Box as={"form"} mt={10}>
             <Stack spacing={4}>
               <Input
+                onChange={handleChange}
+                name="name"
                 placeholder="Fulll Name"
                 bg={"gray.100"}
                 border={0}
@@ -87,6 +114,8 @@ export default function PlanYourTrip() {
                 }}
               />
               <Input
+                onChange={handleChange}
+                name="email"
                 placeholder="name@email.com"
                 bg={"gray.100"}
                 border={0}
@@ -95,29 +124,25 @@ export default function PlanYourTrip() {
                   color: "gray.500",
                 }}
               />
-              {/* <Menu>
-                <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-                  Select Location...
-                </MenuButton>
-                <MenuList>
-                  <MenuItem>India</MenuItem>
-                  <MenuItem>Africa</MenuItem>
-                  <MenuItem>Europe</MenuItem>
-                </MenuList>
-              </Menu> */}
               <FormControl>
-                {/* <FormLabel>Select Location...</FormLabel> */}
-                <Select placeholder="Select country">
-                  <option>India</option>
-                  <option>Africa</option>
-                  <option>Europe</option>
+                <Select
+                  placeholder="Select country"
+                  onChange={handleChange}
+                  name="place"
+                >
+                  <option value="india">India</option>
+                  <option value="africa">Africa</option>
+                  <option value="europe">Europe</option>
                 </Select>
               </FormControl>
 
               <FormControl>
                 <FormLabel>Select No of Travelers</FormLabel>
                 <NumberInput max={500} min={1}>
-                  <NumberInputField />
+                  <NumberInputField
+                    name="numberofTravellers"
+                    onChange={handleChange}
+                  />
                   <NumberInputStepper>
                     <NumberIncrementStepper />
                     <NumberDecrementStepper />
@@ -128,7 +153,10 @@ export default function PlanYourTrip() {
               <FormControl>
                 <FormLabel>Select Budget per Person in $</FormLabel>
                 <NumberInput max={500} min={5}>
-                  <NumberInputField />
+                  <NumberInputField
+                    name="budgetPerPerson"
+                    onChange={handleChange}
+                  />
                   <NumberInputStepper>
                     <NumberIncrementStepper />
                     <NumberDecrementStepper />
@@ -137,6 +165,8 @@ export default function PlanYourTrip() {
               </FormControl>
 
               <Input
+                name="total"
+                onChange={handleChange}
                 placeholder="Total Budget in $"
                 bg={"gray.100"}
                 border={0}
@@ -144,7 +174,7 @@ export default function PlanYourTrip() {
                 _placeholder={{
                   color: "gray.500",
                 }}
-                disabled="true"
+                // disabled="true"
               />
             </Stack>
 
@@ -158,6 +188,7 @@ export default function PlanYourTrip() {
                 bgGradient: "linear(to-r, blue.400,red.400)",
                 boxShadow: "xl",
               }}
+              onClick={handleClick}
             >
               Submit
             </Button>
