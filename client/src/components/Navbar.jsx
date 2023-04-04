@@ -31,20 +31,20 @@ const Navbar = () => {
             display={{ md: "none" }}
             onClick={isOpen ? onClose : onOpen}
           />
-          <HStack spacing={8} alignItems={"center"}>
-            <HStack
-              as={"nav"}
-              spacing={8}
-              display={{ base: "none", md: "flex" }}
-              fontWeight={"extrabold"}
-              fontSize={"2xl"}
-              bgGradient="linear(to-l, blue.500,red.600)"
-              bgClip="text"
-            >
-              <Link to="/">Plan Your Trip</Link>
-              <Link to="/details">Details</Link>
-            </HStack>
+          {/* <HStack spacing={8} alignItems={"center"}> */}
+          <HStack
+            as={"nav"}
+            spacing={10}
+            display={{ base: "none", md: "flex" }}
+            fontWeight={"extrabold"}
+            fontSize={"2xl"}
+            bgGradient="linear(to-l, blue.500,red.600)"
+            bgClip="text"
+          >
+            <Link to="/">Plan Your Trip</Link>
+            <Link to="/details">Details</Link>
           </HStack>
+          {/* </HStack> */}
           <Flex alignItems={"center"}>
             <Menu>
               <MenuButton
@@ -54,17 +54,12 @@ const Navbar = () => {
                 cursor={"pointer"}
                 minW={0}
               >
-                <Avatar
-                  size={"sm"}
-                  src={
-                    "https://res.cloudinary.com/dehubjbqm/image/upload/v1680583094/DSC_5396-removebg-preview_dsi2ks.png"
-                  }
-                />
+                <Avatar size={"md"} src={"/Images/travelopia.png"} />
               </MenuButton>
             </Menu>
           </Flex>
         </Flex>
-        //Responsible for responsiveness
+        {/* Responsible for responsiveness */}
         {isOpen ? (
           <Box pb={4} display={{ md: "none" }}>
             <Stack

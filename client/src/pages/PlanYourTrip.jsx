@@ -146,7 +146,7 @@ export default function PlanYourTrip() {
               lineHeight={1.1}
               fontSize={{ base: "2xl", sm: "3xl", md: "4xl" }}
             >
-              Join our passionate Travellers
+              Join our passionate Travellers{" "}
               <Text
                 as={"span"}
                 bgGradient="linear(to-r, green.400,yellow.400)"

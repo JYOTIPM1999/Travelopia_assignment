@@ -38,6 +38,8 @@ const DetailsPage = () => {
           <Card
             _hover={{ bgGradient: "linear(to-r, green.400,blue.400 )" }}
             key={i}
+            padding={"4"}
+            margin={"2"}
             bgGradient="linear(to-r, blue.400,pink.400)"
             boxShadow={"rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px"}
             textColor={"white"}
@@ -47,13 +49,13 @@ const DetailsPage = () => {
             </CardHeader>
             <CardBody textAlign={"left"}>
               <Heading size="sm"> Contact details-: {el.email}</Heading>
-              <Text fontWeight={"bold"} as="i">
+              <Text fontWeight={"bold"} fontSize={"lg"} as="i">
                 Place-: {el.place}
               </Text>
-              <Text fontSize="lg">
+              <Text fontWeight={"bold"} fontSize="lg">
                 Number of Travellers-: {el.numberofTravellers}
               </Text>
-              <Text fontSize="lg">
+              <Text fontWeight={"bold"} fontSize="lg">
                 Budget per Person-: $ {el.budgetPerPerson}
               </Text>
               <br />
