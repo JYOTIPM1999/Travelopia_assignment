@@ -33,8 +33,8 @@ export default function PlanYourTrip() {
     name: "",
     email: "",
     place: "",
-    numberofTravellers: null,
-    budgetPerPerson: null,
+    numberofTravellers: 1,
+    budgetPerPerson: 0,
     total: 0,
   });
 
@@ -70,7 +70,7 @@ export default function PlanYourTrip() {
     ) {
       toast({
         title: "Please Fill all the details",
-        description: "You have created trip successfully.",
+        description: "Fill all the details before submitting",
         status: "warning",
         duration: 3000,
         position: "top",
@@ -102,7 +102,7 @@ export default function PlanYourTrip() {
       } else {
         toast({
           title: "Email must contain @gmail.com",
-          description: "You have created Trip previously",
+          description: "You email must contain @gmail.com",
           status: "warning",
           position: "top",
           duration: 3000,
@@ -205,6 +205,7 @@ export default function PlanYourTrip() {
                 <Input
                   onChange={handleChange}
                   name="numberofTravellers"
+                  type="number"
                   placeholder="Ex-10"
                   bg={"gray.100"}
                   border={0}
@@ -222,6 +223,7 @@ export default function PlanYourTrip() {
                   name="budgetPerPerson"
                   placeholder="Ex-50 $ per person"
                   bg={"gray.100"}
+                  type="number"
                   border={0}
                   color={"gray.500"}
                   _placeholder={{
