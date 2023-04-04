@@ -3,6 +3,8 @@ const TravellerModel = require("../models/travellers.Scheme");
 const registerTravellers = async (req, res) => {
   const { name, email, place, numberofTravellers, budgetPerPerson, total } =
     req.body;
+
+  console.log(name, email, place, numberofTravellers, budgetPerPerson, total);
   try {
     const existUser = await TravellerModel.findOne({ email });
     if (existUser) {
