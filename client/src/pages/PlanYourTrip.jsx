@@ -20,8 +20,11 @@ import {
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
+  useToast,
+  Wrap,
+  WrapItem,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import axios from "axios";
 
@@ -30,22 +33,71 @@ export default function PlanYourTrip() {
     name: "",
     email: "",
     place: "",
-    numberofTravellers: 0,
-    budgetPerPerson: 0,
+    numberofTravellers: null,
+    budgetPerPerson: null,
     total: 0,
   });
 
   const handleChange = (e) => {
-    e.preventDefault();
-    // const [name, value] = e.target;
-    console.log(e.target.name);
-    // setTrip({ ...trip, [name]: value });
+    const { name, value } = e.target;
+    setTrip({ ...trip, [name]: value });
   };
 
+  useEffect(() => {
+    const { numberofTravellers, budgetPerPerson } = trip;
+
+    if (numberofTravellers && budgetPerPerson) {
+      setTrip({
+        ...trip,
+        total: numberofTravellers * budgetPerPerson,
+      });
+    }
+  }, [trip.numberofTravellers, trip.budgetPerPerson]);
+
+  const toast = useToast();
+
   const handleClick = async () => {
-    console.log("Clicked");
-    let data = await axios.post("http://localhost:8080/traveller/register");
-    console.log(data);
+    const { name, email, place, numberofTravellers, budgetPerPerson, total } =
+      trip;
+    if (
+      !name ||
+      !email ||
+      !place ||
+      !numberofTravellers ||
+      !budgetPerPerson ||
+      !total
+    ) {
+      toast({
+        title: "Please Fill all the details",
+        description: "You have created trip successfully.",
+        status: "warning",
+        duration: 3000,
+        position: "top",
+        isClosable: true,
+      });
+    } else {
+      let data = await axios
+        .post("http://localhost:8080/traveller/register", trip)
+        .then((res) => {
+          if (res.data === "Data successfully saved") {
+            toast({
+              title: "Trip saved successfully.",
+              description: "You have created trip successfully.",
+              status: "success",
+              duration: 3000,
+              isClosable: true,
+            });
+          } else {
+            toast({
+              title: "Email already exist",
+              description: "You have created Trip previously",
+              status: "error",
+              duration: 3000,
+              isClosable: true,
+            });
+          }
+        });
+    }
   };
 
   return (
@@ -138,44 +190,53 @@ export default function PlanYourTrip() {
 
               <FormControl>
                 <FormLabel>Select No of Travelers</FormLabel>
-                <NumberInput max={500} min={1}>
-                  <NumberInputField
-                    name="numberofTravellers"
-                    onChange={handleChange}
-                  />
-                  <NumberInputStepper>
-                    <NumberIncrementStepper />
-                    <NumberDecrementStepper />
-                  </NumberInputStepper>
-                </NumberInput>
+                <Input
+                  onChange={handleChange}
+                  name="numberofTravellers"
+                  placeholder="Ex-10"
+                  bg={"gray.100"}
+                  border={0}
+                  color={"gray.500"}
+                  _placeholder={{
+                    color: "gray.500",
+                  }}
+                />
               </FormControl>
 
               <FormControl>
                 <FormLabel>Select Budget per Person in $</FormLabel>
-                <NumberInput max={500} min={5}>
-                  <NumberInputField
-                    name="budgetPerPerson"
-                    onChange={handleChange}
-                  />
-                  <NumberInputStepper>
-                    <NumberIncrementStepper />
-                    <NumberDecrementStepper />
-                  </NumberInputStepper>
-                </NumberInput>
+                <Input
+                  onChange={handleChange}
+                  name="budgetPerPerson"
+                  placeholder="Ex-50"
+                  bg={"gray.100"}
+                  border={0}
+                  color={"gray.500"}
+                  _placeholder={{
+                    color: "gray.500",
+                  }}
+                />
               </FormControl>
 
-              <Input
-                name="total"
-                onChange={handleChange}
-                placeholder="Total Budget in $"
-                bg={"gray.100"}
-                border={0}
-                color={"gray.500"}
-                _placeholder={{
-                  color: "gray.500",
-                }}
-                // disabled="true"
-              />
+              {/* <FormControl> */}
+              {/* <FormLabel>Total Budget in $</FormLabel> */}
+              {/* <Input
+                  name="total"
+                  onChange={handleChange}
+                  placeholder="Total Budget in $"
+                  bg={"gray.100"}
+                  border={0}
+                  color={"gray.500"}
+                  _placeholder={{
+                    color: "gray.500",
+                  }}
+                  value={trip.total}
+                  disabled="true"
+                /> */}
+              <Text as={"b"} fontSize="25px" color="green">
+                Total Budget - {trip.total} $
+              </Text>
+              {/* </FormControl> */}
             </Stack>
 
             <Button
