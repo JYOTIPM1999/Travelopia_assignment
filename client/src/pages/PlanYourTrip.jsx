@@ -32,8 +32,8 @@ export default function PlanYourTrip() {
     name: "",
     email: "",
     place: "",
-    numberofTravellers: 1,
-    budgetPerPerson: 0,
+    numberofTravellers: null,
+    budgetPerPerson: null,
     total: 0,
   });
 
