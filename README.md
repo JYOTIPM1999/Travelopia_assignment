@@ -77,9 +77,53 @@ This is a MERN Stack project for users to record their travel details. Technolog
 ![Fill Error](https://res.cloudinary.com/dehubjbqm/image/upload/v1680689224/card_arwtps.png)
 ## Features
 
-#### Users can submit form data with their name, email, place, No of Travellers, Budget per person and Total Budget.
+- Users can submit form data with their name, email, place, No of Travellers, Budget per person and Total Budget.
+- The form data is stored in a MongoDB database and can be retrieved using an API endpoint.
+- There is a details page that displays all the existing form submissions.
+- Responsive for every system
 
-#### The form data is stored in a MongoDB database and can be retrieved using an API endpoint.
 
-#### There is a details page that displays all the existing form submissions.
+## Tech Stack
+
+**Client:** ReactJS, Chakra UI, Chakra Template, React-router-dom
+
+**Server:** Node.Js, Express.Js, MongoDB
+
+
+## Deployment
+
+To deploy this project run
+
+```bash
+  npm run deploy
+```
+
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`API_KEY for getting data= https://travelopia-29rz.onrender.com/traveller/getData`
+
+`API_KEY for submitting data= https://travelopia-29rz.onrender.com/traveller/register`
+
+I. Clone the project from the GitHub repository.
+
+II. Navigate to the project directory using the terminal.
+
+III. Install the necessary dependencies by running the command npm install in both the backend and frontend directories.
+
+IV. Create a .env file in the backend directory and add the following environment variables:
+
+PORT=<PORT_NUMBER>
+
+URI=<MONGODB_CONNECTION_URL>
+
+Replace <PORT_NUMBER> with the desired port number for the Backend server and <MONGODB_CONNECTION_URL> with the connection URL for your MongoDB database.
+
+V. Start the Backend server by running the command "npm run serve" in the backend directory.
+
+VI. Start the Frontend server by running the command "npm start" in the frontend directory.
+
+VII. The Frontend server will start on port 3000, and you can access it on your browser using the URL http://localhost:3000.
 
