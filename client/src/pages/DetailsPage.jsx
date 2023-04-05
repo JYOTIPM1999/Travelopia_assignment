@@ -84,9 +84,9 @@ const DetailsPage = () => {
                     <Td>{el.email}</Td>
                     <Td>{el.place}</Td>
                     <Td isNumeric>{el.numberofTravellers}</Td>
-                    <Td isNumeric>{el.budgetPerPerson}</Td>
+                    <Td isNumeric>$ {el.budgetPerPerson}</Td>
                     <Td isNumeric fontWeight={"bold"}>
-                      {el.total}
+                      $ {el.total}
                     </Td>
                   </Tr>
                 );
