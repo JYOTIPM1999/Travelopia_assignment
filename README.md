@@ -95,7 +95,7 @@ This is a MERN Stack project for users to record their travel details. Technolog
 To deploy this project run
 
 ```bash
-  npm run deploy
+  vercel
 ```
 
 
