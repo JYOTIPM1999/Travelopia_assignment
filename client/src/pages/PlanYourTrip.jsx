@@ -12,7 +12,11 @@ import {
   Select,
   useToast,
   Image,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement,
 } from "@chakra-ui/react";
+import { CheckIcon, PhoneIcon } from "@chakra-ui/icons";
 import { useEffect, useState } from "react";
 
 import axios from "axios";
@@ -183,17 +187,23 @@ export default function PlanYourTrip() {
               </FormControl>
               <FormControl>
                 <FormLabel>Add email</FormLabel>
-                <Input
-                  onChange={handleChange}
-                  name="email"
-                  placeholder="name@gmail.com"
-                  bg={"gray.100"}
-                  border={0}
-                  color={"gray.500"}
-                  _placeholder={{
-                    color: "gray.500",
-                  }}
-                />
+                <InputGroup>
+                  <InputLeftElement
+                    pointerEvents="none"
+                    children={<PhoneIcon color="gray.300" />}
+                  />
+                  <Input
+                    onChange={handleChange}
+                    name="email"
+                    placeholder="name@gmail.com"
+                    bg={"gray.100"}
+                    border={0}
+                    color={"gray.500"}
+                    _placeholder={{
+                      color: "gray.500",
+                    }}
+                  />
+                </InputGroup>
               </FormControl>
               <FormControl>
                 <FormLabel>Selection Destination to visit</FormLabel>
@@ -227,18 +237,29 @@ export default function PlanYourTrip() {
 
               <FormControl>
                 <FormLabel>Select budget per Person in $</FormLabel>
-                <Input
-                  onChange={handleChange}
-                  name="budgetPerPerson"
-                  placeholder="Ex-$ 50 per person"
-                  bg={"gray.100"}
-                  type="number"
-                  border={0}
-                  color={"gray.500"}
-                  _placeholder={{
-                    color: "gray.500",
-                  }}
-                />
+                <InputGroup>
+                  <InputLeftElement
+                    pointerEvents="none"
+                    color="gray.500"
+                    fontSize="1.2em"
+                    children="$"
+                  />
+                  <Input
+                    onChange={handleChange}
+                    name="budgetPerPerson"
+                    placeholder="Ex-$ 50 per person"
+                    bg={"gray.100"}
+                    type="number"
+                    border={0}
+                    color={"gray.500"}
+                    _placeholder={{
+                      color: "gray.500",
+                    }}
+                  />
+                  <InputRightElement
+                    children={<CheckIcon color="green.500" />}
+                  />
+                </InputGroup>
               </FormControl>
               <Text as={"b"} fontSize="25px" color="green">
                 Total Budget - $ {trip.total}
