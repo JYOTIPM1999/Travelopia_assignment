@@ -22,7 +22,7 @@ This is a MERN Stack project for users to record their travel details. Technolog
 | :-------- | :------- | :------------------------- |
 | `/getData` | `string` | **Required**. https://travelopia-29rz.onrender.com/traveller/getData |
 
-#### Get item
+#### Post items
 
 ```http
   POST /api/
