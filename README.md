@@ -125,5 +125,5 @@ V. Start the Backend server by running the command "npm run serve" in the backen
 
 VI. Start the Frontend server by running the command "npm start" in the frontend directory.
 
-VII. The Frontend server will start on port 3000, and you can access it on your browser using the URL http://localhost:3000.
+VII. The Frontend server will start on port 3000, and you can access it on your browser using the URL http://localhost:3000
 
