@@ -81,5 +81,5 @@ This is a MERN Stack project for users to record their travel details. Technolog
 
 #### The form data is stored in a MongoDB database and can be retrieved using an API endpoint.
 
-#### There is a submissions page that displays all the existing form submissions.
+#### There is a details page that displays all the existing form submissions.
 
