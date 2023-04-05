@@ -18,7 +18,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 //Used useState for storing data and later parse as body in API
-//API endpoint for registering new user "http://localhost:8080/traveller/register".
+//API endpoint for registering new user "https://travelopia-29rz.onrender.com/traveller/register".
 //Used useEffect Hook for saving total budget by multiplying (numberofTravellers * budgetPerPerson).
 //Used Chakra UI toast() for better alert notifaction on UI.
 //Error checking implement by checking if all input fields are filled before submitting and email should contain @gmail.com for additional security.
@@ -54,7 +54,6 @@ export default function PlanYourTrip() {
   const handleClick = async () => {
     const { name, email, place, numberofTravellers, budgetPerPerson, total } =
       trip;
-
     if (
       !name ||
       !email ||
@@ -73,27 +72,33 @@ export default function PlanYourTrip() {
       });
     } else {
       if (email.includes("@gmail.com")) {
-        let data = await axios
-          .post("http://localhost:8080/traveller/register", trip)
-          .then((res) => {
-            if (res.data === "Data successfully saved") {
-              toast({
-                title: "Trip saved successfully.",
-                description: "You have created trip successfully.",
-                status: "success",
-                duration: 3000,
-                isClosable: true,
-              });
-            } else {
-              toast({
-                title: "Email already exist",
-                description: "You have created Trip previously",
-                status: "error",
-                duration: 3000,
-                isClosable: true,
-              });
-            }
-          });
+        try {
+          let data = await axios.post(
+            "https://travelopia-29rz.onrender.com/traveller/register",
+            trip
+          );
+          if (data.status === 200) {
+            toast({
+              title: "Trip saved successfully.",
+              description: "You have created trip successfully.",
+              status: "success",
+              duration: 3000,
+              isClosable: true,
+            });
+          }
+        } catch (error) {
+          if (error.response.status === 401) {
+            toast({
+              title: "Email already exist",
+              description: "You have created Trip previously",
+              status: "error",
+              duration: 3000,
+              isClosable: true,
+            });
+          } else {
+            alert("Error: " + error.message);
+          }
+        }
       } else {
         toast({
           title: "Email must contain @gmail.com",

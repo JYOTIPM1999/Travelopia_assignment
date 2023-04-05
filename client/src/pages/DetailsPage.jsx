@@ -11,15 +11,17 @@ import { useEffect, useState } from "react";
 
 //Used useEffect Hook for fetching data whenever landing into this page.
 //Used useState to store array of data received from database.
-//API endpoint for retrieving data "http://localhost:8080/traveller/getData"
+//API endpoint for retrieving data "https://travelopia-29rz.onrender.com/traveller/getData"
 //Page is responsive for all screen sizes.
 
 const DetailsPage = () => {
   let [data, setData] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:8080/traveller/getData").then((res) => {
-      setData(res.data);
-    });
+    axios
+      .get("https://travelopia-29rz.onrender.com/traveller/getData")
+      .then((res) => {
+        setData(res.data);
+      });
   }, []);
   return (
     <SimpleGrid
