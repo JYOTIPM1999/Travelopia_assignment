@@ -1,4 +1,5 @@
 import {
+  Box,
   Card,
   CardBody,
   CardHeader,
@@ -19,6 +20,7 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Puff } from "react-loader-spinner";
 
 //Used useEffect Hook for fetching data whenever landing into this page.
 //Used useState to store array of data received from database.
@@ -27,14 +29,18 @@ import { useEffect, useState } from "react";
 
 const DetailsPage = () => {
   let [data, setData] = useState([]);
+  const [load, setLoad] = useState(true);
   useEffect(() => {
     axios
       .get("https://travelopia-29rz.onrender.com/traveller/getData")
       .then((res) => {
+        setLoad(false);
         setData(res.data);
       });
   }, []);
+
   let [show, setShow] = useState({ view: "table" });
+
   const handleClick = (e) => {
     if (e === "table") {
       setShow({ view: e });
@@ -58,12 +64,30 @@ const DetailsPage = () => {
           Card View
         </Button>
       </Flex>
-      {show.view === "table" ? (
+      <br />
+      <Text fontWeight={"black"} as="mark" fontSize={["xs", "lg", "xl"]}>
+        Explore the World with Adventurous and Amazing Travellers
+      </Text>
+      {load ? (
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          height="100vh"
+        >
+          <Puff
+            height="120"
+            width="120"
+            radius={1}
+            color="grey"
+            ariaLabel="puff-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+          />
+        </Box>
+      ) : show.view === "table" ? (
         <TableContainer>
-          <br />
-          <Text fontWeight={"black"} as="mark" fontSize={["xs", "lg", "xl"]}>
-            Explore the World with Adventurous and Amazing Travellers
-          </Text>
           <br />
           <Table variant="striped" colorScheme="green">
             <Thead>

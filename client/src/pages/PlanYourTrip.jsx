@@ -36,6 +36,7 @@ export default function PlanYourTrip() {
     budgetPerPerson: null,
     total: 0,
   });
+  const [load, setLoad] = useState(true);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -58,7 +59,17 @@ export default function PlanYourTrip() {
   const handleClick = async () => {
     const { name, email, place, numberofTravellers, budgetPerPerson, total } =
       trip;
-    if (
+
+    if (numberofTravellers < 1) {
+      toast({
+        title: "Travellers should be atleast one",
+        description: "Fill all the details before submitting",
+        status: "warning",
+        duration: 3000,
+        position: "top",
+        isClosable: true,
+      });
+    } else if (
       !name ||
       !email ||
       !place ||
