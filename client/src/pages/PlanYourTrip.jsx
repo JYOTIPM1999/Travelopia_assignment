@@ -36,7 +36,6 @@ export default function PlanYourTrip() {
     budgetPerPerson: null,
     total: 0,
   });
-  const [load, setLoad] = useState(true);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
